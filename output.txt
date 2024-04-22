@@ -1,0 +1,77 @@
+PS K:\School\CS677\project> python .\ckorzon_metcs677_project.py
+
+## Data Set Info ##
+
+               alpha          delta              u              g              r              i              z       redshift
+count  100000.000000  100000.000000  100000.000000  100000.000000  100000.000000  100000.000000  100000.000000  100000.000000
+mean      177.629117      24.135305      21.980468      20.531387      19.645762      19.084854      18.668810       0.576661
+std        96.502241      19.644665      31.769291      31.750292       1.854760       1.757895      31.728152       0.730707
+min         0.005528     -18.785328   -9999.000000   -9999.000000       9.822070       9.469903   -9999.000000      -0.009971
+25%       127.518222       5.146771      20.352353      18.965230      18.135828      17.732285      17.460677       0.054517
+50%       180.900700      23.645922      22.179135      21.099835      20.125290      19.405145      19.004595       0.424173
+75%       233.895005      39.901550      23.687440      22.123767      21.044785      20.396495      19.921120       0.704154
+max       359.999810      83.000519      32.781390      31.602240      29.571860      32.141470      29.383740       7.011245
+
+Full Data Rows: 100000
+Stars: 21594
+Galaxies: 59445
+Quasars: 18961
+
+Training Data Rows: 75000
+Test Data Rows: 25000
+
+## K-NEAREST-NEIGHBORS ##
+K=1 Accuracy: 93.6040%
+K=3 Accuracy: 94.4200%
+K=5 Accuracy: 94.4160%
+K=7 Accuracy: 94.1880%
+K=9 Accuracy: 94.0360%
+K=11 Accuracy: 93.9520%
+K=13 Accuracy: 93.8080%
+
+Showing KNN accuracies bar chart...
+Best K-NN Model: K=3, Accuracy=94.4200
+K-Nearest-Neighbors Stats:
+{'TS': 5193, 'FS-G': 296, 'FS-Q': 0, 'TG': 14182, 'FG-S': 404, 'FG-Q': 202, 'TQ': 4230, 'FQ-S': 9, 'FQ-G': 484, 'TSR': 0.9460739661140463, 'TGR': 0.9590208276981336, 'TQR': 0.895617192462418, 'ACCURACY': 0.9442}
+Accuracy: 94.4200%
+
+Showing KNN confusion matrix chart...
+
+## Logistic Regression ##
+Logistic Regression Stats:
+{'TS': 5485, 'FS-G': 2, 'FS-Q': 2, 'TG': 14235, 'FG-S': 312, 'FG-Q': 241, 'TQ': 4127, 'FQ-S': 3, 'FQ-G': 593, 'TSR': 0.9992712698123519, 'TGR': 0.9626048147146334, 'TQR': 0.8738090196908744, 'ACCURACY': 0.95388}
+Accuracy: 95.3880%
+
+Showing Logistic Regression confusion matrix chart...
+
+## Naive Bayes ##
+Gaussian Naive Bayes Stats:
+{'TS': 718, 'FS-G': 3951, 'FS-Q': 820, 'TG': 13547, 'FG-S': 8, 'FG-Q': 1233, 'TQ': 4148, 'FQ-S': 0, 'FQ-G': 575, 'TSR': 0.1308070686828202, 'TGR': 0.916080605896673, 'TQR': 0.8782553461782765, 'ACCURACY': 0.73652}
+Accuracy: 73.6520%
+
+Showing Naive Bayes confusion matrix chart...
+
+## RANDOM FOREST ##
+Showing RFC accuracies bar chart...
+Best Random Forest hyper-parameters: N=9, D=9
+Best Random Forest Accuracy: 97.5040%
+Random Forest Classifier Stats:
+{'TS': 5485, 'FS-G': 4, 'FS-Q': 0, 'TG': 14562, 'FG-S': 58, 'FG-Q': 168, 'TQ': 4329, 'FQ-S': 2, 'FQ-G': 392, 'TSR': 0.9992712698123519, 'TGR': 0.9847173383824723, 'TQR': 0.9165784459030277, 'ACCURACY': 0.97504}
+
+Showing Random Forest confusion matrix chart...
+
+## SUMMARY ##
+          K-Nearest Neighbors  Logistic Regressions   Naive Bayes  Random Forest
+TS                5193.000000           5485.000000    718.000000    5485.000000
+FS-G               296.000000              2.000000   3951.000000       4.000000
+FS-Q                 0.000000              2.000000    820.000000       0.000000
+TG               14182.000000          14235.000000  13547.000000   14562.000000
+FG-S               404.000000            312.000000      8.000000      58.000000
+FG-Q               202.000000            241.000000   1233.000000     168.000000
+TQ                4230.000000           4127.000000   4148.000000    4329.000000
+FQ-S                 9.000000              3.000000      0.000000       2.000000
+FQ-G               484.000000            593.000000    575.000000     392.000000
+TSR                  0.946074              0.999271      0.130807       0.999271
+TGR                  0.959021              0.962605      0.916081       0.984717
+TQR                  0.895617              0.873809      0.878255       0.916578
+ACCURACY             0.944200              0.953880      0.736520       0.975040
