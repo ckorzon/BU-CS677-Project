@@ -11,6 +11,7 @@ from sklearn.preprocessing import StandardScaler
 from matplotlib import pyplot as plt
 pd.options.mode.chained_assignment = None  # Disable SettingWithCopyWarning
 
+RAND_STATE = 22
 FEAT_COLS = ["alpha","delta","u","g","r","i","z","redshift"]
 COLS = FEAT_COLS + ["class"]
 CLASS_NUMS = {"STAR": 0, "GALAXY": 1, "QSO": 2}
@@ -75,12 +76,15 @@ def main():
     # Read the star classification data
     df = pd.read_csv("star_classification.csv").loc[:,COLS]
     # Split into Train and Test data sets
-    train_df, test_df = train_test_split(df, test_size=0.25)
+    train_df, test_df = train_test_split(df, test_size=0.25,
+                                    random_state=RAND_STATE,
+                                    stratify=df["class"].values)
 
     # Print information on the data set:
+    df_description = df.describe()
     print("\n## Data Set Info ##")
     print()
-    print(df.describe())
+    print(df_description)
     print()
     print(f"Full Data Rows: {len(df)}")
     print(f"Stars: {len(df.loc[df['class']=='STAR'])}")
@@ -89,6 +93,8 @@ def main():
     print()
     print(f"Training Data Rows: {len(train_df)}")
     print(f"Test Data Rows: {len(test_df)}")
+    print("\nWriting star classification data set summary to csv...")
+    df_description.to_csv("StarClassificationsDataSummary.csv", float_format="%.6f")
 
     # Get X_train and Y_train
     X_trn = train_df[FEAT_COLS].values
@@ -149,7 +155,7 @@ def main():
     # Logistic Regression
     print("\n## Logistic Regression ##")
     # Set max iterations higher since lbfgs failed to converge within 100 iterations.
-    logreg = LogisticRegression(max_iter=1000)
+    logreg = LogisticRegression(max_iter=1000, random_state=RAND_STATE)
     logreg.fit(X_trn,Y_trn)
     logreg_predictions = logreg.predict(X_tst)
     logreg_cm_dict = get_confusion_matrix_dict(Y_tst, logreg_predictions,
@@ -186,7 +192,8 @@ def main():
     for n in range(6,13):
         for d in range(6, 10):
             rfc = RandomForestClassifier(n_estimators=n,
-                                         criterion='entropy', max_depth=d)
+                                         criterion='entropy', max_depth=d,
+                                         random_state=RAND_STATE)
             rfc.fit(X_trn, Y_trn)
             predictions = rfc.predict(X_tst)
             accuracy = get_accuracy(Y_tst, predictions)
@@ -211,6 +218,7 @@ def main():
                                             CM_LABELS)
     print("Random Forest Classifier Stats:")
     print(rfc_cm_dict)
+
     cm = confusion_matrix(Y_tst, best_rfc_predictions, labels=CM_LABELS)
     print("\nShowing Random Forest confusion matrix chart...")
     conf_mtrx_heatmap(cm, ["True Star", "True Galaxy", "True Quasar"],
@@ -227,8 +235,9 @@ def main():
 
     cm_df = pd.DataFrame(combined_cms)
     print(cm_df)
+    print("\nWriting classifiers comparison to csv report...")
+    cm_df.to_csv("StarClassifiersComparison.csv", float_format="%.6f")
 
-    # *NOTE: Highest seen accuracy: 97.464% with Random Forest (N=10, D=9) --> 97.556 w/ Random Forest (N=12, D=9)
 
 if __name__ == "__main__":
     main()
