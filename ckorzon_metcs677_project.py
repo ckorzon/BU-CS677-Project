@@ -1,3 +1,16 @@
+"""
+Conrad Korzon
+Class: CS 677
+Date: 4/21/2024
+Final Project
+Description of Problem: Using the SSDS stellar classification data set,
+train, test, and compare four classifiers: K-Nearest Neighbors, Logistic
+Regression, Naive Bayes, and Random Forest. Perform hyperparameter tuning for
+K-NN and Random Forest. Combine the confusion matrixes, TSR, TGR, TQR, and
+Accuracy for the four classifiers into a report and compare the performance
+of the four classifiers.
+"""
+
 import pandas as pd
 import numpy as np
 import seaborn as sns
@@ -41,6 +54,7 @@ def accuracy_str(accuracy: float):
     return "{:.4f}%".format(accuracy*100)
 
 def show_accuracy_chart(df: pd.DataFrame, title: str, rotate_x_ticks: bool=False, xticks=None):
+    """Display a bar chart with accuracy by index for the provided dataframe."""
     plt.bar(df.index, df["Accuracy"])
     plt.title(title)
     plt.ylabel("Accuracy")
@@ -53,6 +67,7 @@ def show_accuracy_chart(df: pd.DataFrame, title: str, rotate_x_ticks: bool=False
     plt.show()
 
 def conf_mtrx_heatmap(cm: np.ndarray, rows: list, cols: list, title: str):
+    """Display a heatmap of the confusion matrix for the presented data."""
     # Note: CM rows are True labels, cols are Predicted labels
     cm_df = pd.DataFrame(cm, columns=cols, index=rows)
     plt.figure()
@@ -61,16 +76,12 @@ def conf_mtrx_heatmap(cm: np.ndarray, rows: list, cols: list, title: str):
     plt.show()
 
 def get_accuracy(y_true: np.ndarray, y_pred: np.ndarray) -> float:
+    """Get the accuracy of y_pred vs y_true as a float."""
     temp_df = pd.DataFrame(zip(y_true, y_pred),
                            columns=["Actual", "Predicted"])
     all_count = len(temp_df.values)
     correct = len(temp_df.loc[temp_df["Predicted"]==temp_df["Actual"]])
     return correct / all_count
-
-def get_linear_model(x_train, y_train, deg: int):
-    weights = np.polyfit(x_train, y_train, deg)
-    model = np.poly1d(weights)
-    return model
 
 def main():
     # Read the star classification data
@@ -154,7 +165,8 @@ def main():
 
     # Logistic Regression
     print("\n## Logistic Regression ##")
-    # Set max iterations higher since lbfgs failed to converge within 100 iterations.
+    # Set max iterations higher since lbfgs failed to converge
+    # within 100 iterations.
     logreg = LogisticRegression(max_iter=1000, random_state=RAND_STATE)
     logreg.fit(X_trn,Y_trn)
     logreg_predictions = logreg.predict(X_tst)

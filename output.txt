@@ -20,58 +20,62 @@ Quasars: 18961
 Training Data Rows: 75000
 Test Data Rows: 25000
 
+Writing star classification data set summary to csv...
+
 ## K-NEAREST-NEIGHBORS ##
-K=1 Accuracy: 93.6040%
-K=3 Accuracy: 94.4200%
-K=5 Accuracy: 94.4160%
-K=7 Accuracy: 94.1880%
-K=9 Accuracy: 94.0360%
-K=11 Accuracy: 93.9520%
-K=13 Accuracy: 93.8080%
+K=1 Accuracy: 93.5600%
+K=3 Accuracy: 94.3960%
+K=5 Accuracy: 94.4480%
+K=7 Accuracy: 94.2240%
+K=9 Accuracy: 94.1040%
+K=11 Accuracy: 93.9120%
+K=13 Accuracy: 93.7240%
 
 Showing KNN accuracies bar chart...
-Best K-NN Model: K=3, Accuracy=94.4200
+Best K-NN Model: K=5, Accuracy=94.4480
 K-Nearest-Neighbors Stats:
-{'TS': 5193, 'FS-G': 296, 'FS-Q': 0, 'TG': 14182, 'FG-S': 404, 'FG-Q': 202, 'TQ': 4230, 'FQ-S': 9, 'FQ-G': 484, 'TSR': 0.9460739661140463, 'TGR': 0.9590208276981336, 'TQR': 0.895617192462418, 'ACCURACY': 0.9442}
-Accuracy: 94.4200%
+{'TS': 5098, 'FS-G': 300, 'FS-Q': 1, 'TG': 14270, 'FG-S': 415, 'FG-Q': 176, 'TQ': 4244, 'FQ-S': 10, 'FQ-G': 486, 'TSR': 0.9442489349879607, 'TGR': 0.9602314783661934, 'TQR': 0.8953586497890296, 'ACCURACY': 0.94448}
+Accuracy: 94.4480%
 
 Showing KNN confusion matrix chart...
 
 ## Logistic Regression ##
 Logistic Regression Stats:
-{'TS': 5485, 'FS-G': 2, 'FS-Q': 2, 'TG': 14235, 'FG-S': 312, 'FG-Q': 241, 'TQ': 4127, 'FQ-S': 3, 'FQ-G': 593, 'TSR': 0.9992712698123519, 'TGR': 0.9626048147146334, 'TQR': 0.8738090196908744, 'ACCURACY': 0.95388}
-Accuracy: 95.3880%
+{'TS': 5390, 'FS-G': 3, 'FS-Q': 6, 'TG': 14347, 'FG-S': 291, 'FG-Q': 223, 'TQ': 4145, 'FQ-S': 4, 'FQ-G': 591, 'TSR': 0.9983330246341915, 'TGR': 0.9654128255164525, 'TQR': 0.8744725738396625, 'ACCURACY': 0.95528}
+Accuracy: 95.5280%
 
 Showing Logistic Regression confusion matrix chart...
 
 ## Naive Bayes ##
 Gaussian Naive Bayes Stats:
-{'TS': 718, 'FS-G': 3951, 'FS-Q': 820, 'TG': 13547, 'FG-S': 8, 'FG-Q': 1233, 'TQ': 4148, 'FQ-S': 0, 'FQ-G': 575, 'TSR': 0.1308070686828202, 'TGR': 0.916080605896673, 'TQR': 0.8782553461782765, 'ACCURACY': 0.73652}
-Accuracy: 73.6520%
+{'TS': 806, 'FS-G': 3817, 'FS-Q': 776, 'TG': 13653, 'FG-S': 6, 'FG-Q': 1202, 'TQ': 4187, 'FQ-S': 1, 'FQ-G': 552, 'TSR': 0.14928690498240416, 'TGR': 0.9187134109413903, 'TQR': 0.8833333333333333, 'ACCURACY': 0.74584}
+Accuracy: 74.5840%
 
 Showing Naive Bayes confusion matrix chart...
 
 ## RANDOM FOREST ##
 Showing RFC accuracies bar chart...
-Best Random Forest hyper-parameters: N=9, D=9
-Best Random Forest Accuracy: 97.5040%
+Best Random Forest hyper-parameters: N=12, D=9
+Best Random Forest Accuracy: 97.5160%
 Random Forest Classifier Stats:
-{'TS': 5485, 'FS-G': 4, 'FS-Q': 0, 'TG': 14562, 'FG-S': 58, 'FG-Q': 168, 'TQ': 4329, 'FQ-S': 2, 'FQ-G': 392, 'TSR': 0.9992712698123519, 'TGR': 0.9847173383824723, 'TQR': 0.9165784459030277, 'ACCURACY': 0.97504}
+{'TS': 5394, 'FS-G': 5, 'FS-Q': 0, 'TG': 14593, 'FG-S': 60, 'FG-Q': 208, 'TQ': 4392, 'FQ-S': 2, 'FQ-G': 346, 'TSR': 0.9990739025745509, 'TGR': 0.9819662203081893, 'TQR': 0.9265822784810127, 'ACCURACY': 0.97516}
 
 Showing Random Forest confusion matrix chart...
 
 ## SUMMARY ##
           K-Nearest Neighbors  Logistic Regressions   Naive Bayes  Random Forest
-TS                5193.000000           5485.000000    718.000000    5485.000000
-FS-G               296.000000              2.000000   3951.000000       4.000000
-FS-Q                 0.000000              2.000000    820.000000       0.000000
-TG               14182.000000          14235.000000  13547.000000   14562.000000
-FG-S               404.000000            312.000000      8.000000      58.000000
-FG-Q               202.000000            241.000000   1233.000000     168.000000
-TQ                4230.000000           4127.000000   4148.000000    4329.000000
-FQ-S                 9.000000              3.000000      0.000000       2.000000
-FQ-G               484.000000            593.000000    575.000000     392.000000
-TSR                  0.946074              0.999271      0.130807       0.999271
-TGR                  0.959021              0.962605      0.916081       0.984717
-TQR                  0.895617              0.873809      0.878255       0.916578
-ACCURACY             0.944200              0.953880      0.736520       0.975040
+TS                5098.000000           5390.000000    806.000000    5394.000000
+FS-G               300.000000              3.000000   3817.000000       5.000000
+FS-Q                 1.000000              6.000000    776.000000       0.000000
+TG               14270.000000          14347.000000  13653.000000   14593.000000
+FG-S               415.000000            291.000000      6.000000      60.000000
+FG-Q               176.000000            223.000000   1202.000000     208.000000
+TQ                4244.000000           4145.000000   4187.000000    4392.000000
+FQ-S                10.000000              4.000000      1.000000       2.000000
+FQ-G               486.000000            591.000000    552.000000     346.000000
+TSR                  0.944249              0.998333      0.149287       0.999074
+TGR                  0.960231              0.965413      0.918713       0.981966
+TQR                  0.895359              0.874473      0.883333       0.926582
+ACCURACY             0.944480              0.955280      0.745840       0.975160
+
+Writing classifiers comparison to csv report...
